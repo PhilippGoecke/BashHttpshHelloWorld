@@ -14,7 +14,8 @@ RUN git clone --depth 1 https://git.sakamoto.pl/domi/http.sh.git /httpsh/
 
 RUN ./http.sh init
 
-RUN echo '#!/bin/bash\necho '\''<html><head><meta charset="utf-8"></head><body>'\''\n\nif [[ ! "${get_data[name]}" ]]; then\n\techo '\''<p>Hello World!</p>'\''\nelse\n\techo "<p>Hello $(html_encode "${get_data[name]}")!</p>"\nfi\n\necho '\''</body></html>'\''' > app/hello.shs
+RUN echo 'router "/hello" "app/views/hello.shs"' >> app/router.sh \
+  && echo '#!/bin/bash\necho '\''<html><head><meta charset="utf-8"></head><body>'\''\n\nif [[ ! "${get_data[name]}" ]]; then\n\techo '\''<p>Hello World!</p>'\''\nelse\n\techo "<p>Hello $(html_encode "${get_data[name]}")!</p>"\nfi\n\necho '\''</body></html>'\''' > app/views/hello.shs
 
 EXPOSE 1337
 
