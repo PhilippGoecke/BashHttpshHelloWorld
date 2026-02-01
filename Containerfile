@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && apt upgrade -y \
     && apt install -y --no-install-recommends --no-install-suggests curl git ca-certificates \
-    && apt install -y --no-install-recommends --no-install-suggests bash sed grep ncat socat file findutils jq argon2 xxd \
+    && apt install -y --no-install-recommends --no-install-suggests bash sed grep ncat socat file findutils jq argon2 pkill xxd \
     && rm -rf "/var/lib/apt/lists/*" \
     && rm -rf /var/cache/apt/archives
 
